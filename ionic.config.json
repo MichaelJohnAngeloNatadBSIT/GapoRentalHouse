@@ -1,0 +1,7 @@
+{
+  "name": "GapoRentalHouse",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
