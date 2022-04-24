@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register Now</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-item lines="full">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input formControlName="first_name" type="text" #first_name required></ion-input>
+    </ion-item> 
+
+    <ion-item lines="full">
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input formControlName="last_name" type="text" #last_name required></ion-input>
+    </ion-item> 
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email" #email required></ion-input>
+      <span class="error ion-padding" *ngIf="errorCtr.email.errors?.pattern">
+        Enter valid email.
+      </span>
+    </ion-item> 
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <!-- <app-show-hide-password> -->
+        <ion-input formControlName="password" type="password" #password required></ion-input>
+      <!-- </app-show-hide-password> -->
+      <span class="error ion-padding" *ngIf="errorCtr.password.errors?.minlength">
+       Password Must be 6 characters and above.
+      </span>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input formControlName="password_confirmation" type="password" #password_confirmation required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col> 
+      <ion-button type="submit" expand="block" (click)="submit()" [disabled]="!form.valid">Submit</ion-button>
+      <span class="error ion-padding" *ngIf="!form.valid">
+        All Fields Must be Filled.
+       </span>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

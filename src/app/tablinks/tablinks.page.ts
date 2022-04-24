@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tablinks.page.scss'],
 })
 export class TablinksPage implements OnInit {
+  loggedIn = false;
 
   constructor() { }
 
   ngOnInit() {
+    this.loggedIn = localStorage.getItem('token') !== null;
   }
 
 }

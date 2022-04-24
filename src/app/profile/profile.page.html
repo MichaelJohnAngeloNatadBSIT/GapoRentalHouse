@@ -15,10 +15,11 @@
           <!-- <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button> -->
           
         </div>
-       
-        <div class="card-body">
+        <!-- {{user.first_name}} -->
+        <div class="card-body" *ngIf="user">
           <div class="user-meta ion-text-center">
-            <h3 class="name">test username</h3>
+            <h3 class="name"> {{user.first_name}} </h3>
+            <h3 class="name"> {{user.last_name}} </h3>
             <h5 class="country">TeST</h5>
             <ion-chip color="primary">
               <ion-icon name="pencil"></ion-icon>
@@ -29,6 +30,7 @@
               <ion-label>Visit Schedules</ion-label>
             </ion-chip> 
           </div>
+          <ion-button (click)="logout()">Log Out</ion-button>
         </div>
       </div>
     </div>
