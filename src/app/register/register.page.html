@@ -26,17 +26,20 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <!-- <app-show-hide-password> -->
+      <app-show-hide-password>
         <ion-input formControlName="password" type="password" #password required></ion-input>
-      <!-- </app-show-hide-password> -->
-      <span class="error ion-padding" *ngIf="errorCtr.password.errors?.minlength">
-       Password Must be 6 characters and above.
-      </span>
+      </app-show-hide-password>
+      <div *ngIf="(errorCtr.password.dirty || errorCtr.password.touched) && errorCtr.password.errors" class="errors">
+        <span *ngIf="errorCtr.password.errors?.required">Password is required</span>
+        <span *ngIf="errorCtr.password.errors?.minlength">Password needs to be 6 characters</span>
+      </div>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Confirm Password</ion-label>
-      <ion-input formControlName="password_confirmation" type="password" #password_confirmation required></ion-input>
+      <app-show-hide-password>
+        <ion-input formControlName="password_confirmation" type="password" #password_confirmation required></ion-input>
+      </app-show-hide-password>
     </ion-item>
 
     <ion-row>
@@ -48,5 +51,6 @@
       </ion-col>
     </ion-row>
   </form>
+  <ion-button color="tertiary" [routerLink]="['/']">Back</ion-button>
 
 </ion-content>

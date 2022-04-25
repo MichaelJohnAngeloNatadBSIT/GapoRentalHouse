@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ product.name}}
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="product.imageUrl" alt="product image">
+  <div class="ion-padding">
+    <ion-text>
+      <h1>{{product.name}}</h1>
+      <h3>{{product.price}}</h3>
+      <p class="ion-margin-vertical">{{product.description}}</p>
+    </ion-text>
+    <ion-button color="primary" expand="block">Edit</ion-button>
+    <ion-button color="danger" expand="block">Delete</ion-button>
+  </div>
+
+</ion-content>

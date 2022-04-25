@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MarketPageRoutingModule } from './market-routing.module';
 
 import { MarketPage } from './market.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MarketPageRoutingModule
+    MarketPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [MarketPage]
 })
