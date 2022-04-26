@@ -4,7 +4,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Product } from './market.model';
-import { tap } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { DetailComponent } from '../detail/detail.component';
 
 @Component({
@@ -41,8 +41,31 @@ export class MarketPage implements OnInit {
       component: DetailComponent,
       componentProps: {product},
     });
-    modal.present();
-  }
+    await modal.present();
 
+    const { data: updatedProduct, role } = await modal.onDidDismiss();
+    if (updatedProduct && role === 'edit') {
+      this.products$ = this.products$.pipe(
+        map(products=>{
+          products.forEach(prod=>{
+            if(prod.id === updatedProduct.id){
+              prod = updatedProduct;
+            }
+            return prod;
+          });
+          return products;
+        })
+      );
+    }
+    if(role === 'delete'){
+      this.products$ = this.products$.pipe(
+        map(products=>{
+          products.filter(prod => prod.id != updatedProduct.id);
+          return products;
+        })
+      );
+
+    }
+  }
 
 }
