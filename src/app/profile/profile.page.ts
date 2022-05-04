@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { Router } from "@angular/router";
 export class ProfilePage implements OnInit {
   user;
 
-  constructor(private http: HttpClient, public router:Router) { 
+  constructor(private http: HttpClient, public router:Router, private authService: AuthenticationService) { 
 
    }
 
@@ -31,8 +32,8 @@ export class ProfilePage implements OnInit {
     );
   }
 
-  logout(){
-    localStorage.removeItem('token');
+  async logout(){
+    await this.authService.logout();
     this.router.navigate(['/']);
   }
 

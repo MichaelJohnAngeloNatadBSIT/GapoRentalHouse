@@ -22,10 +22,6 @@ export class MarketPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    // this.http.get('http://127.0.0.1:8000/products').subscribe(result=>{
-    //   console.log(result);
-    // })
-
     const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
     loading.present();
 

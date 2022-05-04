@@ -1,29 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
     <ion-title>Log In</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+  <form (ngSubmit)="login()" [formGroup]="credentials">
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" #email required></ion-input>
+      <ion-input type="text" formControlName="email" required></ion-input>
     </ion-item> 
 
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
       <app-show-hide-password>
-       <ion-input type="password" #password required></ion-input>
+       <ion-input type="password" formControlName="password" required></ion-input>
       </app-show-hide-password>  
     </ion-item>
+    <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+      <span *ngIf="password.errors?.required">Password is required</span>
+      <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
+    </div>
 
     <ion-row>
       <ion-col> 
-      <ion-button type="submit" (click)="login(email, password)" expand="block">Login</ion-button>
-      <ion-button type="submit" (click)="registerLink()" expand="block">Register</ion-button>
+      <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Login</ion-button>
+      <ion-button (click)="registerLink()" expand="block">Register</ion-button>
       </ion-col>
     </ion-row>
   </form>

@@ -12,10 +12,8 @@
           <ion-avatar>
             <img src="https://picsum.photos/200" alt="profile-pic" class="profile-pic">
           </ion-avatar>
-          <!-- <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button> -->
-          
         </div>
-        <!-- {{user.first_name}} -->
+        
         <div class="card-body" *ngIf="user">
           <div class="user-meta ion-text-center">
             <h3 class="name"> {{user.first_name}} </h3>
@@ -25,12 +23,19 @@
               <ion-icon name="pencil"></ion-icon>
               <ion-label>Edit Profile</ion-label>
             </ion-chip>
+            <ion-chip color="tertiary">
+              <ion-icon name="home-outline"></ion-icon>
+              <ion-label>Post Available House</ion-label>
+            </ion-chip>
             <ion-chip color="success">
               <ion-icon name="calendar"></ion-icon>
               <ion-label>Visit Schedules</ion-label>
-            </ion-chip> 
+            </ion-chip>
+            <ion-chip color="danger" (click)="logout()">
+              <ion-icon name="log-out-outline"></ion-icon>
+              <ion-label>Logout</ion-label>
+            </ion-chip>
           </div>
-          <ion-button (click)="logout()">Log Out</ion-button>
         </div>
       </div>
     </div>
