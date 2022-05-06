@@ -35,13 +35,6 @@
       </div>
     </ion-item>
 
-    <ion-item lines="full">
-      <ion-label position="floating">Confirm Password</ion-label>
-      <app-show-hide-password>
-        <ion-input formControlName="password_confirmation" type="password" #password_confirmation required></ion-input>
-      </app-show-hide-password>
-    </ion-item>
-
     <ion-row>
       <ion-col> 
       <ion-button type="submit" expand="block" (click)="submit()" [disabled]="!form.valid">Submit</ion-button>
