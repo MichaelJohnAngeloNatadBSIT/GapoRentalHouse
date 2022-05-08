@@ -15,7 +15,9 @@ export class AddProductPage implements OnInit {
   @Input() product: Product;
   isEditMode = false;
   form: FormGroup;
-  constructor(private productService: ProductService, private loadingCtrl: LoadingController, private modalCtrl: ModalController) { }
+  constructor(private productService: ProductService,
+              private loadingCtrl: LoadingController, 
+              private modalCtrl: ModalController) { }
 
   ngOnInit() {
    this.initAddProductForm();

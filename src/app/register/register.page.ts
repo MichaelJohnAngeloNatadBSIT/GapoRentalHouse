@@ -6,7 +6,7 @@ import { Route, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { RegisterService } from '../services/register.service';
 import { HttpErrorResponse } from '@angular/common/http';
-// import { ConfirmedValidator } from './confirmed.validator';
+import { extractErrorMessagesFromErrorResponse } from './errorHandling';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegisterPage implements OnInit {
   form: FormGroup;
-  // credentials: FormGroup;
+
   submitted = false;
 
   constructor(private fb:FormBuilder, 
@@ -36,7 +36,6 @@ export class RegisterPage implements OnInit {
     );
   }
 
-
   async submit(){
     const loading = await this.loadingController.create();
     await loading.present();
@@ -46,16 +45,28 @@ export class RegisterPage implements OnInit {
 
     this.http.post('http://127.0.0.1:8000/register', formData).subscribe(
       async (result) => {
+        await loading.dismiss();     
+        const alert = await this.alertController.create({
+          header: 'Success',
+          message: "User Created Successfully",
+          buttons: ['OK'],
+        });
+        await alert.present();   
+        this.router.navigate(['/login']);
+        this.form.reset();
+      },
+      async (errorResponse: HttpErrorResponse) => {
         await loading.dismiss();        
-        this.router.navigate(['/login']);
-        this.form.reset();
-      },
-      async  (error) => {
-        await loading.dismiss();      
-        console.log(error);  
-        this.router.navigate(['/login']);
-        this.form.reset();
-      },
+        const messages = extractErrorMessagesFromErrorResponse(errorResponse);
+        if(messages.toString().toLocaleLowerCase().indexOf("errors")){
+          const alert = await this.alertController.create({
+            header: 'Login failed',
+            message: messages.toString(),
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }     
+      }
     )
   }
 

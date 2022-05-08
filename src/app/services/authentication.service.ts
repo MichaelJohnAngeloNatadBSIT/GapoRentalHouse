@@ -41,6 +41,7 @@ export class AuthenticationService {
   
     return this.http.post('http://127.0.0.1:8000/oauth/token', data).pipe(
       map((data: any) => {
+        console.log(data);
         localStorage.setItem(TOKEN_KEY, data.access_token);
         return from(Storage.set({key: TOKEN_KEY, value: data.access_token}));
       }),

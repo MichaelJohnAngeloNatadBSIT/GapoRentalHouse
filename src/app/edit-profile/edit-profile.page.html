@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tablinks"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content class="ion-padding">
+    <div *ngIf="user != undefined">
+      <form [formGroup]="form" >
+        <ion-item lines="full">
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="first_name"></ion-input>
+        </ion-item>
+    
+        <ion-item lines="full">
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="last_name"></ion-input>
+        </ion-item>
+    
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+        <ion-button (click)="updateUserDetails()" expand="block" [disabled]="form.invalid">Update Details</ion-button>
+    
+    </form>
+  </div>
+</ion-content>

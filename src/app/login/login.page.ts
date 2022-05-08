@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
         console.log(this.credentials.value);
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: res.error.error,
+          message: res.error.message,
           buttons: ['OK'],
         });
  

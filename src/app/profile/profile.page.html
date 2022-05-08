@@ -16,10 +16,11 @@
         
         <div class="card-body" *ngIf="user">
           <div class="user-meta ion-text-center">
+            <h3 class="name"> {{user.id}} </h3>
             <h3 class="name"> {{user.first_name}} </h3>
             <h3 class="name"> {{user.last_name}} </h3>
             <h5 class="country">TeST</h5>
-            <ion-chip color="primary">
+            <ion-chip color="primary" (click)="editProfileLink()">
               <ion-icon name="pencil"></ion-icon>
               <ion-label>Edit Profile</ion-label>
             </ion-chip>
@@ -40,5 +41,7 @@
       </div>
     </div>
   </div>
+
+  
 
 </ion-content>

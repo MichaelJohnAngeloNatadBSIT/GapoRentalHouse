@@ -32,7 +32,7 @@ export class MarketPage implements OnInit {
     }));
   }
 
-  async openDetailModal( product:Product){
+  async openDetailModal(product:Product){
     const modal = await this.modalCtrl.create({
       component: DetailComponent,
       componentProps: {product},
