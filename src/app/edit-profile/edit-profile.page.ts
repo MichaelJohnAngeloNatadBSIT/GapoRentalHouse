@@ -37,7 +37,6 @@ export class EditProfilePage implements OnInit {
       await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
       (result: any) => {
         this.user = result
-        console.log(this.user);
         this.setFormValues(this.user.id, this.user.first_name, this.user.last_name, this.user.email);
       });
   }
@@ -59,6 +58,7 @@ export class EditProfilePage implements OnInit {
     response = this.editProfileService.updateUser(this.user.id, this.form.value);
     response.pipe(take(1)).subscribe((product)=>{
       loading.dismiss();
+      this.router.navigate(['/tablinks'])
     });
   }
 

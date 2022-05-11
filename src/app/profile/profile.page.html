@@ -4,25 +4,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="user">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="ion-padding">
     <div class="card">
       <div class="header">
         <div class="avatar">
           <ion-avatar>
-            <img src="https://picsum.photos/200" alt="profile-pic" class="profile-pic">
+            <img src="{{apiUrl}}{{user.image}}" alt="{{user.image}}" class="profile-pic">
           </ion-avatar>
         </div>
         
-        <div class="card-body" *ngIf="user">
+        <div class="card-body">
           <div class="user-meta ion-text-center">
-            <h3 class="name"> {{user.id}} </h3>
-            <h3 class="name"> {{user.first_name}} </h3>
-            <h3 class="name"> {{user.last_name}} </h3>
-            <h5 class="country">TeST</h5>
+            <h3 class="name"> {{user.first_name}} {{user.last_name}}</h3>
+            <p class="country">{{user.email}}</p>
             <ion-chip color="primary" (click)="editProfileLink()">
               <ion-icon name="pencil"></ion-icon>
               <ion-label>Edit Profile</ion-label>
+            </ion-chip>
+            <ion-chip color="primary" (click)="updatePhotoLink()">
+              <ion-icon name="pencil"></ion-icon>
+              <ion-label>Update Profile Picture</ion-label>
             </ion-chip>
             <ion-chip color="tertiary">
               <ion-icon name="home-outline"></ion-icon>

@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },  {
+    path: 'upload-image',
+    loadChildren: () => import('./upload-image/upload-image.module').then( m => m.UploadImagePageModule)
   },
+
 
   
 ];

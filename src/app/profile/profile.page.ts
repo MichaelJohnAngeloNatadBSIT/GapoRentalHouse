@@ -11,26 +11,24 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user;
+  user:any;
+  userImage:any;
+  apiUrl = 'http://localhost:8000/images/';
 
   constructor(private http: HttpClient,
               public router:Router,
               private authService: AuthenticationService) { 
    }
 
-  ngOnInit() {
+  async ngOnInit() {
   
    const header = new HttpHeaders({
     'Authorization': `Bearer  ${localStorage.getItem('token')}`,
    });
-    this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+
+   await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
     (result) => {
-      this.user = result
-      console.log(this.user);
-    },
-    (error) =>{
-      localStorage.removeItem('token');
-      this.router.navigate(['/']);
+      this.user = result;
     });
     
   }
@@ -42,6 +40,27 @@ export class ProfilePage implements OnInit {
 
   editProfileLink(){
     this.router.navigate(['/edit-profile']);
+  }
+
+  updatePhotoLink(){
+    this.router.navigate(['/upload-image']);
+  }
+
+  
+  async doRefresh(event) {
+    console.log('Begin async operation');
+    const header = new HttpHeaders({
+      'Authorization': `Bearer  ${localStorage.getItem('token')}`,
+     });
+    await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+    (result) => {
+      this.user = result;
+    });
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
   }
 
 }

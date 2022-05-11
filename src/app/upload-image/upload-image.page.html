@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Profile Picture</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tablinks"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   <form #f="ngForm" (ngSubmit)="onSubmitform(f)">
+    <div class="card">
+    <input type="file"  name="myFile" (change)="fileEvent($event)"/>
+      <div class="header">
+        <div class="avatar">
+          <ion-avatar>
+            <img [src]="imagePreview" class="profile-pic"/>
+          </ion-avatar>
+        </div>
+      </div>
+    </div>
+
+    <ion-button color="tertiary" size="default" type="submit">Upload Image</ion-button> 
+  </form> 
+</ion-content>
