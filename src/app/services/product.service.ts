@@ -23,6 +23,10 @@ export class ProductService {
     return this.http.put<Product>(`${this.apiUrl}/${productId}`, product);
   }
 
+  updateProductImage(productId: number, product: Product):Observable<Product>{
+    return this.http.put<Product>(`${this.apiUrl}/${productId}`, product);
+  }
+
   deleteProduct(productId: number):Observable<Product>{
     return this.http.delete<Product>(`${this.apiUrl}/${productId}`);
   }

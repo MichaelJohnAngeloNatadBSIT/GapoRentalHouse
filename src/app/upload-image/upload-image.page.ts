@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { User } from '../edit-profile/edit-profile.model';
-import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { Observable } from 'rxjs';
 import { AlertController, LoadingController } from '@ionic/angular';
 
@@ -17,7 +16,6 @@ export class UploadImagePage implements OnInit {
   imagePreview:any;
 
   constructor(private http:HttpClient,
-              private camera: Camera,
               private loadingController: LoadingController,
               private alertController: AlertController,
               ) { }
@@ -57,6 +55,7 @@ export class UploadImagePage implements OnInit {
       
       myFormData.append('image', this.filedata, this.filedata.name);
       /* Image Post Request */
+      console.log(this.user.id);
       this.http.post(`${apiUrl}/${this.user.id}`, myFormData, {
       headers: headers
       }).subscribe(

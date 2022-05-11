@@ -26,12 +26,16 @@
               <ion-label>Edit Profile</ion-label>
             </ion-chip>
             <ion-chip color="primary" (click)="updatePhotoLink()">
-              <ion-icon name="pencil"></ion-icon>
+              <ion-icon name="person-circle-outline"></ion-icon>
               <ion-label>Update Profile Picture</ion-label>
             </ion-chip>
-            <ion-chip color="tertiary">
+            <ion-chip color="tertiary" (click)="addProductLink()">
               <ion-icon name="home-outline"></ion-icon>
               <ion-label>Post Available House</ion-label>
+            </ion-chip>
+            <ion-chip color="tertiary" (click)="postedHouseLink()">
+              <ion-icon name="home"></ion-icon>
+              <ion-label>View/Edit Posted House</ion-label>
             </ion-chip>
             <ion-chip color="success">
               <ion-icon name="calendar"></ion-icon>

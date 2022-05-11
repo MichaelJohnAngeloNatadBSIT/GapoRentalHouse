@@ -13,6 +13,7 @@ import { take } from 'rxjs/operators';
 })
 export class DetailComponent implements OnInit {
   @Input() product: Product;
+  apiUrl = 'http://localhost:8000/imagesHouses/';
 
   constructor(private modalCtrl: ModalController, private productService: ProductService, private loadingCtrl: LoadingController) { }
 

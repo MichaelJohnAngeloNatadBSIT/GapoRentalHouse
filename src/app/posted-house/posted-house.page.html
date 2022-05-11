@@ -1,10 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Available Houses</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/add-product">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
+    <ion-title>posted-house</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tablinks"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +12,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-card *ngFor="let p of products$|async" (click)="openDetailModal(p)">
-    <img [src]="p.imageUrl" />
+    <img src="{{apiUrl}}{{p.imageUrl}}" />
     <ion-card-header>
       <ion-card-subtitle>{{p.price}}</ion-card-subtitle>
       <ion-card-title>{{p.name}}</ion-card-title>

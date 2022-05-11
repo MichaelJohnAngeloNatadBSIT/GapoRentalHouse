@@ -17,30 +17,42 @@
 <ion-content class="ion-padding">
   <form [formGroup]='form'>
     <ion-item lines="full">
-      <ion-label position="floating">Name</ion-label>
-      <ion-input formControlName="name"></ion-input>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input formControlName="name" required></ion-input>
     </ion-item>
+    <span *ngIf="errorCtr.name.errors?.required">Title is required</span>
 
     <ion-item lines="full">
       <ion-label position="floating">Price</ion-label>
-      <ion-input formControlName="price"></ion-input>
+      <ion-input formControlName="price" type="number" required></ion-input>
     </ion-item>
+    <span class="error ion-padding" *ngIf="errorCtr.price.errors?.pattern">
+      Input Numbers Only
+    </span>
 
     <ion-item lines="full">
       <ion-label position="floating">Category</ion-label>
-      <ion-input formControlName="category"></ion-input>
+      <ion-input formControlName="category"required></ion-input>
     </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Image URL</ion-label>
-      <ion-input formControlName="imageUrl"></ion-input>
-    </ion-item>
+    <span *ngIf="errorCtr.category.errors?.required">Category is required</span>
 
     <ion-item lines="full">
       <ion-label position="floating">Description</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
+      
     </ion-item>
 
     <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid">{{isEditMode ? 'Update' : 'Post'}} Product</ion-button>
   </form>
+  <div *ngIf="productId">
+  <form #f="ngForm" (ngSubmit)="onSubmitform(f)">
+    <div class="card">
+    <input type="file"  name="myFile" (change)="fileEvent($event)"/>
+      <div class="header">
+            <img [src]="imagePreview"/>
+      </div>
+    </div>
+    <ion-button color="tertiary" size="default" type="submit">Upload Image</ion-button> 
+  </form> 
+  </div>
 </ion-content>

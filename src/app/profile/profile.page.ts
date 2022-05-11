@@ -45,6 +45,12 @@ export class ProfilePage implements OnInit {
   updatePhotoLink(){
     this.router.navigate(['/upload-image']);
   }
+  addProductLink(){
+    this.router.navigate(['/add-product']);
+  }
+  postedHouseLink(){
+    this.router.navigate(['/posted-house']);
+  }
 
   
   async doRefresh(event) {

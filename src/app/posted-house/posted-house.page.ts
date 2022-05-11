@@ -1,37 +1,41 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ProductService } from '../services/product.service';
-import { Product } from './market.model';
+import { Product } from '../market/market.model';
 import { map, tap } from "rxjs/operators";
 import { DetailComponent } from '../detail/detail.component';
 
 @Component({
-  selector: 'app-market',
-  templateUrl: './market.page.html',
-  styleUrls: ['./market.page.scss'],
+  selector: 'app-posted-house',
+  templateUrl: './posted-house.page.html',
+  styleUrls: ['./posted-house.page.scss'],
 })
-export class MarketPage implements OnInit {
+export class PostedHousePage implements OnInit {
   products$: Observable<Product[]>;
+  product:any;
+  apiUrl = 'http://localhost:8000/imagesHouses/';
 
   constructor(
     private productService: ProductService, 
     private loadingCtrl: LoadingController,
     private modalCtrl:ModalController,
-    ) { }
+  ) { }
 
-  async ngOnInit() {
+ async ngOnInit() {
     const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
     loading.present();
 
     this.products$ = this.productService.getProducts().pipe(
       tap(products=>{
         loading.dismiss();
+        this.product = products;
         return products;
     }));
+
   }
 
+  
   async openDetailModal(product:Product){
     const modal = await this.modalCtrl.create({
       component: DetailComponent,
