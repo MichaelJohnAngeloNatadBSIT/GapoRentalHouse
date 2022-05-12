@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{isEditMode ? 'Update' : 'Post'}} Product</ion-title>
-    <ion-buttons slot="start" *ngIf="!isEditMode">
+    <ion-buttons slot="start" *ngIf="!isEditMode && !productId">
       <ion-back-button defaultHref="tablinks"></ion-back-button>
     </ion-buttons>
 
@@ -15,7 +15,8 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]='form'>
+  <div *ngIf="!productId">
+  <form [formGroup]='form' >
     <ion-item lines="full">
       <ion-label position="floating">Title</ion-label>
       <ion-input formControlName="name" required></ion-input>
@@ -26,9 +27,6 @@
       <ion-label position="floating">Price</ion-label>
       <ion-input formControlName="price" type="number" required></ion-input>
     </ion-item>
-    <span class="error ion-padding" *ngIf="errorCtr.price.errors?.pattern">
-      Input Numbers Only
-    </span>
 
     <ion-item lines="full">
       <ion-label position="floating">Category</ion-label>
@@ -39,11 +37,12 @@
     <ion-item lines="full">
       <ion-label position="floating">Description</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
-      
     </ion-item>
 
     <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid">{{isEditMode ? 'Update' : 'Post'}} Product</ion-button>
   </form>
+  </div>
+
   <div *ngIf="productId">
   <form #f="ngForm" (ngSubmit)="onSubmitform(f)">
     <div class="card">

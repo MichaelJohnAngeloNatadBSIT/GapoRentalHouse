@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { User } from '../edit-profile/edit-profile.model';
 import { Observable } from 'rxjs';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-image',
@@ -18,6 +19,7 @@ export class UploadImagePage implements OnInit {
   constructor(private http:HttpClient,
               private loadingController: LoadingController,
               private alertController: AlertController,
+              private router: Router,
               ) { }
 
   base64Image: string;
@@ -55,13 +57,13 @@ export class UploadImagePage implements OnInit {
       
       myFormData.append('image', this.filedata, this.filedata.name);
       /* Image Post Request */
-      console.log(this.user.id);
       this.http.post(`${apiUrl}/${this.user.id}`, myFormData, {
       headers: headers
       }).subscribe(
       async(data) => {
        //Check success message
        await loading.dismiss();
+       this.router.navigate(['tablinks'])
        const alert = await this.alertController.create({
          header: 'Updated Successfully',
          message: 'Image is updated Successfully',

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Schedule Visit</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form *ngIf="form" [formGroup]='form'>
+    <ion-datetime [(ngModel)]="date"
+      displayFormat="MMM DD, YYYY HH:mm"
+      formControlName="schedule_date">
+    </ion-datetime>
+    <ion-button (click)="submitSchedule()">Set Schedule Of Visit</ion-button>
+  </form>
+
+</ion-content>

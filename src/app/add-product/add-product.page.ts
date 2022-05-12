@@ -36,9 +36,6 @@ export class AddProductPage implements OnInit {
    if(this.product){
     this.isEditMode = true;
     this.setFormValues();
-    console.log(this.product);
-    // this.product.id = this.productId;
-
    }
  
   }
@@ -47,7 +44,7 @@ export class AddProductPage implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
-      category: new FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+      category: new FormControl(null, Validators.required),
       // imageUrl: new FormControl(null, Validators.required),
       description: new FormControl(null),
     })
@@ -64,14 +61,10 @@ export class AddProductPage implements OnInit {
     }
     else{
       response = this.productService.addProduct(this.form.value);
-      // console.log(this.product.id);
-      // this.router.navigate(['/upload-image-house']);
     }
 
     response.pipe(take(1)).subscribe((product)=>{
-
       this.productId = product.id;
-      // this.form.reset();
       loading.dismiss();
         if(this.isEditMode){
           this.closeModal(product);
@@ -128,8 +121,8 @@ export class AddProductPage implements OnInit {
        //Check success message
        await loading.dismiss();
        const alert = await this.alertController.create({
-         header: 'Updated Successfully',
-         message: 'Image is updated Successfully',
+         header: 'Uploaded Successfully',
+         message: 'Image is uploaded Successfully',
          buttons: ['OK'],
        });
        await alert.present();

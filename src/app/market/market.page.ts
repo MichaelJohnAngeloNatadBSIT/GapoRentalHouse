@@ -6,6 +6,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from './market.model';
 import { map, tap } from "rxjs/operators";
 import { DetailComponent } from '../detail/detail.component';
+import { DetailMarketComponent } from '../detail-market/detail-market.component';
 
 @Component({
   selector: 'app-market',
@@ -14,6 +15,7 @@ import { DetailComponent } from '../detail/detail.component';
 })
 export class MarketPage implements OnInit {
   products$: Observable<Product[]>;
+  apiUrl = 'http://localhost:8000/imagesHouses/';
 
   constructor(
     private productService: ProductService, 
@@ -34,7 +36,7 @@ export class MarketPage implements OnInit {
 
   async openDetailModal(product:Product){
     const modal = await this.modalCtrl.create({
-      component: DetailComponent,
+      component: DetailMarketComponent,
       componentProps: {product},
     });
     await modal.present();
