@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../market/market.model';
 import { map, tap } from "rxjs/operators";
 import { DetailComponent } from '../detail/detail.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posted-house',
@@ -20,6 +21,7 @@ export class PostedHousePage implements OnInit {
     private productService: ProductService, 
     private loadingCtrl: LoadingController,
     private modalCtrl:ModalController,
+    private router: Router,
   ) { }
 
  async ngOnInit() {
@@ -82,4 +84,7 @@ export class PostedHousePage implements OnInit {
     }, 1000);
   }
 
+  backButton(){
+    this.router.navigate(['/tablinks']);
+  }
 }

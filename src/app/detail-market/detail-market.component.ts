@@ -14,17 +14,16 @@ import { take } from 'rxjs/operators';
 export class DetailMarketComponent implements OnInit {
 
   @Input() product: Product;
-  // @Input() user: User;
   apiUrl = 'http://localhost:8000/imagesHouses/';
 
-  constructor(private modalCtrl: ModalController, private productService: ProductService, private loadingCtrl: LoadingController) { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
     
   }
 
-  closeModal(role = 'edit'){
-    this.modalCtrl.dismiss(this.product, role);
+  closeModal(){
+    this.modalCtrl.dismiss();
   }
 
   async openScheduleModal(){
@@ -33,26 +32,6 @@ export class DetailMarketComponent implements OnInit {
       componentProps:{ product: this.product},
     });
     await modal.present();
-
-    // const { data: updatedProduct } = await modal.onDidDismiss();
-    // if (updatedProduct) {
-    //   this.product = updatedProduct;
-    // }
-  }
-
-  async onDeleteProduct(){
-    const loading = await this.loadingCtrl.create({message: 'Deleting....'});
-    loading.present();
-
-    this.productService.deleteProduct(this.product.id).pipe(take(1)).subscribe(()=>{
-      loading.dismiss();
-      this.closeModal('delete');
-    });
-  }
-
-  async setSchedule(){
-    const loading = await this.loadingCtrl.create({message:'Loading...'})
-    loading.present();
   }
 
 }

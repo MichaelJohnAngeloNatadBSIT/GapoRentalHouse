@@ -15,6 +15,7 @@ export class ScheduleVisitPage implements OnInit {
   @Input() product: Product;
   user:any;
   form: FormGroup;
+  minDate: string = new Date().toISOString();
   public date:any = new Date().toISOString();
 
   constructor(private modalCtrl:ModalController, 
@@ -47,12 +48,7 @@ export class ScheduleVisitPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
         
-    console.log(this.form.value);
-    console.log(this.user.id);
-    console.log(this.product.id);
-
-
-    this.scheduleService.scheduleUser(this.user.id, this.product.id, this.form.value).subscribe(
+    this.scheduleService.scheduleUser(this.user.id, this.product.id, this.product.name, this.product.price, this.product.imageUrl, this.form.value).subscribe(
       async (res)=>{
       loading.dismiss();
       const alert = await this.alertController.create({
@@ -61,6 +57,7 @@ export class ScheduleVisitPage implements OnInit {
         buttons: ['OK'],
       });
       await alert.present();
+      this.modalCtrl.dismiss();
     },
     async (err)=>{
       loading.dismiss();
@@ -70,13 +67,12 @@ export class ScheduleVisitPage implements OnInit {
         buttons: ['OK'],
       });
       await alert.present();
-    }
-    );
+    });
 
   }
 
   closeModal(data = null){
     this.modalCtrl.dismiss(data);
   }
-
+  
 }

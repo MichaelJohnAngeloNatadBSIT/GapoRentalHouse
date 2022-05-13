@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Product } from './market.model';
 import { map, tap } from "rxjs/operators";
-import { DetailComponent } from '../detail/detail.component';
 import { DetailMarketComponent } from '../detail-market/detail-market.component';
 
 @Component({

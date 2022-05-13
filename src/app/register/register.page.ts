@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from "@angular/forms";
 import { Route, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { RegisterService } from '../services/register.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { extractErrorMessagesFromErrorResponse } from './errorHandling';
 
@@ -20,7 +19,6 @@ export class RegisterPage implements OnInit {
 
   constructor(private fb:FormBuilder, 
               public router:Router, 
-              private registerService: RegisterService,
               private loadingController: LoadingController,
               private alertController: AlertController,
               private http:HttpClient,

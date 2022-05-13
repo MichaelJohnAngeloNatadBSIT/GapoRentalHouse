@@ -10,8 +10,13 @@ export class ScheduleService {
 
   constructor(private http: HttpClient) { }
 
-  scheduleUser(userId: number, productId: number, schedule): Observable<any>{
-    return this.http.post(`${this.apiUrl}/${userId}/${productId}`, schedule);
+  scheduleUser(userId: number, productId: number, productName:string, productPrice:number, productImg:string, schedule): Observable<any>{
+    return this.http.post(`${this.apiUrl}/${userId}/${productId}/${productName}/${productPrice}/${productImg}`, schedule);
   }
+
+  getScheduleUser(userId: number){
+    return this.http.get(`${this.apiUrl}/${userId}`);
+  }
+
 
 }

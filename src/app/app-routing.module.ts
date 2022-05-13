@@ -58,10 +58,12 @@ const routes: Routes = [
   {
     path: 'posted-house',
     loadChildren: () => import('./posted-house/posted-house.module').then( m => m.PostedHousePageModule)
-  },  {
+  },
+  {
     path: 'schedule-visit',
     loadChildren: () => import('./schedule-visit/schedule-visit.module').then( m => m.ScheduleVisitPageModule)
   },
+  
 
 
 

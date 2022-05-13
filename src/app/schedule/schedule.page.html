@@ -5,7 +5,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
-
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+   <div *ngFor="let d of dates|async">
+   <ion-card (click)="openCalendarModal(d)">
+    <img src="{{apiUrl}}{{d.product_image}}"/>
+    <ion-card-header>
+      <ion-card-subtitle>{{d.product_price}}</ion-card-subtitle>
+      <ion-card-title>{{d.product_name}}</ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>Test</ion-card-content>
+  </ion-card>
+</div>
 </ion-content>
-

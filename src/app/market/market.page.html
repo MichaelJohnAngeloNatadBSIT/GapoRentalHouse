@@ -1,11 +1,6 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Available Houses</ion-title>
-    <!-- <ion-buttons slot="end">
-      <ion-button routerLink="/add-product">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -13,17 +8,13 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let p of products$|async" (click)="openDetailModal(p)">
-    <img src="{{apiUrl}}{{p.imageUrl}}" />
-    <ion-card-header>
-      <ion-card-subtitle>{{p.price}}</ion-card-subtitle>
-      <ion-card-title>{{p.name}}</ion-card-title>
-      <ion-card-subtitle>{{p.category}}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>{{p.description}}</ion-card-content>
-    <ion-button id="heart" fill="clear">
-      <ion-icon name="heart-outline"></ion-icon>
-    </ion-button>
-  </ion-card>
-
+    <ion-card *ngFor="let p of products$|async" (click)="openDetailModal(p)">
+      <img src="{{apiUrl}}{{p.imageUrl}}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{p.price}}</ion-card-subtitle>
+        <ion-card-title>{{p.name}}</ion-card-title>
+        <ion-card-subtitle>{{p.category}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>{{p.description}}</ion-card-content>
+    </ion-card>
 </ion-content>
