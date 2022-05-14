@@ -39,7 +39,6 @@ export class SchedulePage implements OnInit {
         this.dates = this.scheduleService.getScheduleUser(this.user.id).pipe(
           tap(schedules=>{
             loading.dismiss();
-            console.log(schedules);
             return schedules;
         }));
       });

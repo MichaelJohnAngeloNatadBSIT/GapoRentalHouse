@@ -6,6 +6,7 @@ import { Product } from '../market/market.model';
 import { map, tap } from "rxjs/operators";
 import { DetailComponent } from '../detail/detail.component';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-posted-house',
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
 export class PostedHousePage implements OnInit {
   products$: Observable<Product[]>;
   product:any;
+  user: any;
   apiUrl = 'http://localhost:8000/imagesHouses/';
 
   constructor(
@@ -22,18 +24,28 @@ export class PostedHousePage implements OnInit {
     private loadingCtrl: LoadingController,
     private modalCtrl:ModalController,
     private router: Router,
+    private http: HttpClient,
   ) { }
 
  async ngOnInit() {
     const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
     loading.present();
+    const header = new HttpHeaders({
+      'Authorization': `Bearer  ${localStorage.getItem('token')}`,
+     });
+  
+     await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+      (result) => {
+        this.user = result;
+        this.products$ = this.productService.getProductWithUserId(this.user.id).pipe(
+          tap(products=>{
+            loading.dismiss();
+            this.product = products;
+            return products;
+        }));
+      });
 
-    this.products$ = this.productService.getProducts().pipe(
-      tap(products=>{
-        loading.dismiss();
-        this.product = products;
-        return products;
-    }));
+
 
   }
 
@@ -73,7 +85,7 @@ export class PostedHousePage implements OnInit {
   async doRefresh(event) {
     const loading = await this.loadingCtrl.create({message: 'Loading....'});
     loading.present();
-    this.products$ = this.productService.getProducts().pipe(
+    this.products$ = this.productService.getProductWithUserId(this.user.id).pipe(
       tap(products=>{
         loading.dismiss();
         return products;

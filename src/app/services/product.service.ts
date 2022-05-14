@@ -9,6 +9,8 @@ import { Product } from '../market/market.model';
 export class ProductService {
   apiUrl = 'http://127.0.0.1:8000/products';
   apiUrl2 = 'http://127.0.0.1:8000/getProductById';
+  apiUrl3='http://127.0.0.1:8000/add-product';
+  apiUrl4='http://127.0.0.1:8000/getProductByUserId';
 
   constructor(private http:HttpClient) { }
 
@@ -16,13 +18,15 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}`);
   }
 
-  getProductWithId(productId): Observable<Product[]>{
+  getProductWithId(productId:number): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.apiUrl2}/${productId}`);
   }
+  getProductWithUserId(userId:number): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.apiUrl4}/${userId}`);
+  }
 
-
-  addProduct(product: Product){
-    return this.http.post<Product>(`${this.apiUrl}`, product);
+  addProduct(product: Product, userId: number){
+    return this.http.post<Product>(`${this.apiUrl3}/${userId}`, product);
   }
 
   updateProduct(productId: number, product: Product):Observable<Product>{

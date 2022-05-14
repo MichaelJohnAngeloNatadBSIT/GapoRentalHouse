@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
-import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
 
 const TOKEN_KEY = 'token';
@@ -53,7 +52,7 @@ export class AuthenticationService {
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
     localStorage.removeItem('token');
-    
+    window.location.reload();
     return Storage.remove({key: TOKEN_KEY});
   }
 }

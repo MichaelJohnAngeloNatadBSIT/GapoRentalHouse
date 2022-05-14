@@ -34,9 +34,7 @@ export class ScheduleVisitPage implements OnInit {
   
      await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
       (result: any) => {
-        this.user = result;
-        console.log(this.user.id)
-        console.log(this.product.id);
+        this.user = result;;
       });
 
       this.form = new FormGroup({

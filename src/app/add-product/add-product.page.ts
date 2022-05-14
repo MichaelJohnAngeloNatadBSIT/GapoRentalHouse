@@ -19,9 +19,10 @@ export class AddProductPage implements OnInit {
   @Input() product: Product;
   isEditMode = false;
   form: FormGroup;
-  filedata:any;
-  imagePreview:any;
-  productId:number;
+  filedata: any;
+  imagePreview: any;
+  productId: number;
+  user: any;
 
   constructor(private productService: ProductService,
               private loadingCtrl: LoadingController, 
@@ -37,6 +38,15 @@ export class AddProductPage implements OnInit {
     this.isEditMode = true;
     this.setFormValues();
    }
+
+   const header = new HttpHeaders({
+    'Authorization': `Bearer  ${localStorage.getItem('token')}`,
+   });
+
+   await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+    (result) => {
+      this.user = result;
+    });
  
   }
 
@@ -56,11 +66,12 @@ export class AddProductPage implements OnInit {
     let response: Observable<Product>;
 
 
+
     if(this.isEditMode){
       response = this.productService.updateProduct(this.product.id, this.form.value);
     }
     else{
-      response = this.productService.addProduct(this.form.value);
+      response = this.productService.addProduct(this.form.value, this.user.id);
     }
 
     response.pipe(take(1)).subscribe((product)=>{
