@@ -32,3 +32,12 @@
     --ion-color-tertiary: #22577a;
     --ion-color-success: #80ed99;
   }
+
+  @font-face {   
+    font-family: 'Roboto';    //This is what we are going to call
+    src: url('./assets/fonts/RobotoCondensed-Regular.ttf');
+  }
+  @font-face {   
+    font-family: 'Roboto-Bold';  //This is what we are going to call  
+    src: url('./assets/fonts/RobotoCondensed-Bold.ttf');
+  }
