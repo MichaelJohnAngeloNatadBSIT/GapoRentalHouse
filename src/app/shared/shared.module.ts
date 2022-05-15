@@ -9,11 +9,17 @@ import { DetailCalendarComponent } from '../detail-calendar/detail-calendar.comp
 
 
 @NgModule({
-  declarations: [ShowHidePasswordComponent, DetailComponent, DetailMarketComponent, DetailCalendarComponent],
+  declarations: [ShowHidePasswordComponent, 
+                 DetailComponent, 
+                 DetailMarketComponent, 
+                 DetailCalendarComponent,],
   imports: [
     CommonModule,
     IonicModule
   ],
-  exports:[ShowHidePasswordComponent,DetailComponent, DetailMarketComponent, DetailCalendarComponent]
+  exports:[ShowHidePasswordComponent,
+           DetailComponent, 
+           DetailMarketComponent, 
+           DetailCalendarComponent,]
 })
 export class SharedModule { }

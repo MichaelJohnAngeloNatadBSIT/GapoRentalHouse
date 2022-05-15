@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IntroGuard } from './guards/intro.guard';
 import { AutoLoginGuard } from './guards/auto-login.guard';
 import { AuthGuard } from './guards/auth.guard';
@@ -17,11 +18,6 @@ const routes: Routes = [
     loadChildren: () => import('./tablinks/tablinks.module').then(m => m.TablinksPageModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  },
-
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
@@ -63,6 +59,8 @@ const routes: Routes = [
     path: 'schedule-visit',
     loadChildren: () => import('./schedule-visit/schedule-visit.module').then( m => m.ScheduleVisitPageModule)
   },
+
+
   
 
 

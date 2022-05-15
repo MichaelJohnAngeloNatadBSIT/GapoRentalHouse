@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="user">
+<ion-content *ngIf="user" overflow-scroll="true">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -21,7 +21,7 @@
           <div class="user-meta ion-text-center">
             <h3 class="name"> {{user.first_name}} {{user.last_name}}</h3>
             <p class="country">{{user.email}}</p>
-            <ion-chip color="primary" (click)="editProfileLink()">
+            <ion-chip color="secondary" (click)="editProfileLink()">
               <ion-icon name="pencil"></ion-icon>
               <ion-label>Edit Profile</ion-label>
             </ion-chip>
@@ -36,10 +36,6 @@
             <ion-chip color="tertiary" (click)="postedHouseLink()">
               <ion-icon name="home"></ion-icon>
               <ion-label>View/Edit Posted House</ion-label>
-            </ion-chip>
-            <ion-chip color="success">
-              <ion-icon name="calendar"></ion-icon>
-              <ion-label>Visit Schedules</ion-label>
             </ion-chip>
             <ion-chip color="danger" (click)="logout()">
               <ion-icon name="log-out-outline"></ion-icon>
