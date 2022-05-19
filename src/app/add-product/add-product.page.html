@@ -1,14 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{isEditMode ? 'Update' : 'Post'}} Product</ion-title>
-    <ion-buttons slot="start" *ngIf="!isEditMode && !productId">
+    <ion-title>Post House</ion-title>
+    <ion-buttons slot="start" >
       <ion-back-button defaultHref="tablinks"></ion-back-button>
-    </ion-buttons>
-
-    <ion-buttons slot="end" *ngIf="isEditMode">
-        <ion-button (click)="closeModal()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
     </ion-buttons>
 
   </ion-toolbar>
@@ -35,11 +29,11 @@
     <span *ngIf="errorCtr.category.errors?.required">Category is required</span>
 
     <ion-item lines="full">
-      <ion-label position="floating">Description</ion-label>
+      <ion-label position="floating">Address</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
     </ion-item>
 
-    <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid">{{isEditMode ? 'Update' : 'Post'}} Product</ion-button>
+    <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid">Post Product</ion-button>
   </form>
   </div>
 

@@ -27,7 +27,7 @@ export class UploadImagePage implements OnInit {
     const header = new HttpHeaders({
       'Authorization': `Bearer  ${localStorage.getItem('token')}`,
      });
-      await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+      await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
       (result: any) => {
         this.user = result
       });
@@ -46,7 +46,7 @@ export class UploadImagePage implements OnInit {
 
 
     async onSubmitform(f: NgForm) {
-      const apiUrl = 'http://127.0.0.1:8000/updateImage';
+      const apiUrl = 'http://192.168.1.178:80/updateImage';
       const loading = await this.loadingController.create();
       await loading.present();
       

@@ -40,7 +40,7 @@ export class RegisterPage implements OnInit {
     const formData = this.form.getRawValue();
     console.log(formData);
 
-    this.http.post('http://127.0.0.1:8000/register', formData).subscribe(
+    this.http.post('http://192.168.1.178/register', formData).subscribe(
       async (result) => {
         await loading.dismiss();     
         const alert = await this.alertController.create({
@@ -57,7 +57,7 @@ export class RegisterPage implements OnInit {
         const messages = extractErrorMessagesFromErrorResponse(errorResponse);
         if(messages.toString().toLocaleLowerCase().indexOf("errors")){
           const alert = await this.alertController.create({
-            header: 'Login failed',
+            header: 'Register failed',
             message: messages.toString(),
             buttons: ['OK'],
           });

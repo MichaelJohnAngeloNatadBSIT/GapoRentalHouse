@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>upload-image-house</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="add-product"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #f="ngForm" (ngSubmit)="onSubmitform(f)">
+    <div class="card">
+    <input type="file"  name="myFile" (change)="fileEvent($event)"/>
+      <div class="header">
+            <img [src]="imagePreview"/>
+      </div>
+    </div>
+    <ion-button color="tertiary" size="default" type="submit">Upload Image</ion-button> 
+  </form> 
+
+</ion-content>

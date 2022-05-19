@@ -7,7 +7,7 @@ import { User } from '../edit-profile/edit-profile.model';
   providedIn: 'root'
 })
 export class EditProfileService {
-  apiUrl = 'http://127.0.0.1:8000/update';
+  apiUrl = 'http://192.168.1.178:80/update';
 
  
   constructor(private http:HttpClient) { }

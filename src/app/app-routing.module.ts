@@ -58,7 +58,11 @@ const routes: Routes = [
   {
     path: 'schedule-visit',
     loadChildren: () => import('./schedule-visit/schedule-visit.module').then( m => m.ScheduleVisitPageModule)
+  },  {
+    path: 'edit-product',
+    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
   },
+
 
 
   

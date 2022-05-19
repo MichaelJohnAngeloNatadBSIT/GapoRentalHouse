@@ -7,10 +7,10 @@ import { Product } from '../market/market.model';
   providedIn: 'root'
 })
 export class ProductService {
-  apiUrl = 'http://127.0.0.1:8000/products';
-  apiUrl2 = 'http://127.0.0.1:8000/getProductById';
-  apiUrl3='http://127.0.0.1:8000/add-product';
-  apiUrl4='http://127.0.0.1:8000/getProductByUserId';
+  apiUrl = 'http://192.168.1.178:80/products';
+  apiUrl2 = 'http://192.168.1.178:80/getProductById';
+  apiUrl3 = 'http://192.168.1.178:80/add-product';
+  apiUrl4 = 'http://192.168.1.178:80/getProductByUserId';
 
   constructor(private http:HttpClient) { }
 

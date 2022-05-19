@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update House</ion-title>
+
+    <ion-buttons slot="end" >
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="!productId">
+  <form [formGroup]='form' >
+    <ion-item lines="full">
+      <ion-label position="floating">Title</ion-label>
+      <ion-input formControlName="name" required></ion-input>
+    </ion-item>
+    <span *ngIf="errorCtr.name.errors?.required">Title is required</span>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Price</ion-label>
+      <ion-input formControlName="price" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Category</ion-label>
+      <ion-input formControlName="category"required></ion-input>
+    </ion-item>
+    <span *ngIf="errorCtr.category.errors?.required">Category is required</span>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+
+    <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid"> Update Product</ion-button>
+  </form>
+  </div>
+
+  <div *ngIf="productId">
+  <form #f="ngForm" (ngSubmit)="onSubmitform(f)">
+    <div class="card">
+    <input type="file"  name="myFile" (change)="fileEvent($event)"/>
+      <div class="header">
+            <img [src]="imagePreview"/>
+      </div>
+    </div>
+    <ion-button color="tertiary" size="default" type="submit">Upload Image</ion-button> 
+  </form> 
+  </div>
+</ion-content>

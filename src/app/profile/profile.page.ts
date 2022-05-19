@@ -13,7 +13,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class ProfilePage implements OnInit {
   user:any;
   userImage:any;
-  apiUrl = 'http://localhost:8000/images/';
+  apiUrl = 'http://192.168.1.178:80/images/';
 
   constructor(private http: HttpClient,
               public router:Router,
@@ -26,7 +26,7 @@ export class ProfilePage implements OnInit {
     'Authorization': `Bearer  ${localStorage.getItem('token')}`,
    });
 
-   await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+   await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
     (result) => {
       this.user = result;
     });
@@ -58,7 +58,7 @@ export class ProfilePage implements OnInit {
     const header = new HttpHeaders({
       'Authorization': `Bearer  ${localStorage.getItem('token')}`,
      });
-    await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+    await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
     (result) => {
       this.user = result;
     });

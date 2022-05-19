@@ -17,7 +17,7 @@ export class PostedHousePage implements OnInit {
   products$: Observable<Product[]>;
   product:any;
   user: any;
-  apiUrl = 'http://localhost:8000/imagesHouses/';
+  apiUrl = 'http://192.168.1.178:80/imagesHouses/';
 
   constructor(
     private productService: ProductService, 
@@ -34,7 +34,7 @@ export class PostedHousePage implements OnInit {
       'Authorization': `Bearer  ${localStorage.getItem('token')}`,
      });
   
-     await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+     await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
       (result) => {
         this.user = result;
         this.products$ = this.productService.getProductWithUserId(this.user.id).pipe(
@@ -44,12 +44,8 @@ export class PostedHousePage implements OnInit {
             return products;
         }));
       });
-
-
-
   }
 
-  
   async openDetailModal(product:Product){
     const modal = await this.modalCtrl.create({
       component: DetailComponent,
@@ -94,6 +90,9 @@ export class PostedHousePage implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 1000);
+  }
+ editProductLink(){
+    this.router.navigate(['/edit-product']);
   }
 
   backButton(){

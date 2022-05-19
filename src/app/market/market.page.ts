@@ -13,7 +13,7 @@ import { DetailMarketComponent } from '../detail-market/detail-market.component'
 })
 export class MarketPage implements OnInit {
   products$: Observable<Product[]>;
-  apiUrl = 'http://localhost:8000/imagesHouses/';
+  apiUrl = 'http://192.168.1.178:80/imagesHouses/';
 
   constructor(
     private productService: ProductService, 

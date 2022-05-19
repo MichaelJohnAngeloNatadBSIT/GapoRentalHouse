@@ -14,7 +14,7 @@ import { take } from 'rxjs/operators';
 export class DetailMarketComponent implements OnInit {
 
   @Input() product: Product;
-  apiUrl = 'http://localhost:8000/imagesHouses/';
+  apiUrl = 'http://192.168.1.178:80/imagesHouses/';
 
   constructor(private modalCtrl: ModalController) { }
 

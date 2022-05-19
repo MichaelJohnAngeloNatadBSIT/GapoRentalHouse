@@ -37,8 +37,8 @@ export class AuthenticationService {
       client_secret: 'T4Apu3n6dkfWH8iLDSDYHoIydk9mdqxDZphsBKAS',
       scope: '*'
     }
-  
-    return this.http.post('http://127.0.0.1:8000/oauth/token', data).pipe(
+    //127.0.0.1:8000
+    return this.http.post('http://192.168.1.178:80/oauth/token', data).pipe(
       map((data: any) => {
         localStorage.setItem(TOKEN_KEY, data.access_token);
         return from(Storage.set({key: TOKEN_KEY, value: data.access_token}));
@@ -52,7 +52,7 @@ export class AuthenticationService {
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
     localStorage.removeItem('token');
-    window.location.reload();
+    // window.location.reload();
     return Storage.remove({key: TOKEN_KEY});
   }
 }

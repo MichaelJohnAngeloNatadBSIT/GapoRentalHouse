@@ -18,7 +18,7 @@ export class SchedulePage implements OnInit {
   products$: Observable<Product[]>;
   dates: any;
   schedules$:  Observable<Schedule[]>;
-  apiUrl = 'http://localhost:8000/imagesHouses/';
+  apiUrl = 'http://192.168.1.178:80/imagesHouses/';
 
   constructor(private http: HttpClient, 
               private scheduleService: ScheduleService, 
@@ -33,7 +33,7 @@ export class SchedulePage implements OnInit {
       'Authorization': `Bearer  ${localStorage.getItem('token')}`,
      });
   
-     await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+     await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
       (result) => {
         this.user = result;
         this.dates = this.scheduleService.getScheduleUser(this.user.id).pipe(

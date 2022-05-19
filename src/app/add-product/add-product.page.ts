@@ -17,7 +17,6 @@ import { map, tap } from "rxjs/operators";
 })
 export class AddProductPage implements OnInit {
   @Input() product: Product;
-  isEditMode = false;
   form: FormGroup;
   filedata: any;
   imagePreview: any;
@@ -34,16 +33,11 @@ export class AddProductPage implements OnInit {
   async ngOnInit() {
    this.initAddProductForm();
 
-   if(this.product){
-    this.isEditMode = true;
-    this.setFormValues();
-   }
-
    const header = new HttpHeaders({
     'Authorization': `Bearer  ${localStorage.getItem('token')}`,
    });
 
-   await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+   await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
     (result) => {
       this.user = result;
     });
@@ -65,21 +59,10 @@ export class AddProductPage implements OnInit {
     loading.present();
     let response: Observable<Product>;
 
-
-
-    if(this.isEditMode){
-      response = this.productService.updateProduct(this.product.id, this.form.value);
-    }
-    else{
-      response = this.productService.addProduct(this.form.value, this.user.id);
-    }
-
+    response = this.productService.addProduct(this.form.value, this.user.id);
     response.pipe(take(1)).subscribe((product)=>{
       this.productId = product.id;
       loading.dismiss();
-        if(this.isEditMode){
-          this.closeModal(product);
-        }
     });
   }
 
@@ -110,7 +93,7 @@ export class AddProductPage implements OnInit {
 
     //image upload
     async onSubmitform(f: NgForm) {
-      const apiUrl = 'http://127.0.0.1:8000/updateHouseImage';
+      const apiUrl = 'http://192.168.1.178:80/updateHouseImage';
       const loading = await this.loadingCtrl.create();
       await loading.present();
       
@@ -118,8 +101,6 @@ export class AddProductPage implements OnInit {
       const headers = new HttpHeaders();
       headers.append('Content-Type', 'multipart/form-data');
       headers.append('Accept', 'application/json');
-      console.log(this.productId);
-      console.log(this.filedata);
       
       myFormData.append('image', this.filedata, this.filedata.name);
       /* Image Post Request */

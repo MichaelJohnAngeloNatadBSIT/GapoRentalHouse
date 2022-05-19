@@ -34,7 +34,7 @@ export class EditProfilePage implements OnInit {
     const header = new HttpHeaders({
       'Authorization': `Bearer  ${localStorage.getItem('token')}`,
      });
-      await this.http.get('http://127.0.0.1:8000/user', {headers: header}).subscribe(
+      await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
       (result: any) => {
         this.user = result
         this.setFormValues(this.user.id, this.user.first_name, this.user.last_name, this.user.email);
