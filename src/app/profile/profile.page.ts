@@ -51,6 +51,9 @@ export class ProfilePage implements OnInit {
   postedHouseLink(){
     this.router.navigate(['/posted-house']);
   }
+  changePasswordLink(){
+    this.router.navigate(['/change-password']);
+  }
 
   
   async doRefresh(event) {

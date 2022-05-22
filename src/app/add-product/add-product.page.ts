@@ -48,7 +48,7 @@ export class AddProductPage implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
-      category: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
       // imageUrl: new FormControl(null, Validators.required),
       description: new FormControl(null),
     })
@@ -74,7 +74,7 @@ export class AddProductPage implements OnInit {
     this.form.setValue({
       name: this.product.name,
       price: this.product.price,
-      category: this.product.category,
+      address: this.product.address,
       imageUrl: this.product.imageUrl,
       description: this.product.description,
     });

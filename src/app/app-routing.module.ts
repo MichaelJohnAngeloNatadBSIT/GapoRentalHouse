@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'edit-product',
     loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
   },
+  {
+    path: 'change-password',
+    loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
 
 
 

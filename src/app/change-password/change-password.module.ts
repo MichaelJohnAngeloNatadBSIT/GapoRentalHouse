@@ -4,20 +4,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPageRoutingModule } from './register-routing.module';
+import { ChangePasswordPageRoutingModule } from './change-password-routing.module';
 
-import { RegisterPage } from './register.page';
+import { ChangePasswordPage } from './change-password.page';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    RegisterPageRoutingModule,
     ReactiveFormsModule,
+    IonicModule,
+    ChangePasswordPageRoutingModule,
     SharedModule
   ],
-  declarations: [RegisterPage],
+  declarations: [ChangePasswordPage]
 })
-export class RegisterPageModule {}
+export class ChangePasswordPageModule {}
