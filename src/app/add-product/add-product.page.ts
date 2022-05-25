@@ -49,6 +49,7 @@ export class AddProductPage implements OnInit {
       name: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
+      status: new FormControl(null, Validators.required),
       // imageUrl: new FormControl(null, Validators.required),
       description: new FormControl(null),
     })
@@ -75,6 +76,7 @@ export class AddProductPage implements OnInit {
       name: this.product.name,
       price: this.product.price,
       address: this.product.address,
+      status: this.product.status,
       imageUrl: this.product.imageUrl,
       description: this.product.description,
     });

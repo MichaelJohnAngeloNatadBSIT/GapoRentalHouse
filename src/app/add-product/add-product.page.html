@@ -29,6 +29,12 @@
     <span *ngIf="errorCtr.address.errors?.required">Address is required</span>
 
     <ion-item lines="full">
+      <ion-label position="floating">Status</ion-label>
+      <ion-input formControlName="status"required></ion-input>
+    </ion-item>
+    <span *ngIf="errorCtr.status.errors?.required">Status is required</span>
+
+    <ion-item lines="full">
       <ion-label position="floating">Description</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
     </ion-item>
