@@ -13,6 +13,7 @@ import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

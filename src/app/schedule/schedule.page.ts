@@ -7,6 +7,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { Product } from '../market/market.model';
 import { Schedule } from './schedule.model';
 import { DetailCalendarComponent } from '../detail-calendar/detail-calendar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -24,46 +25,17 @@ export class SchedulePage implements OnInit {
               private scheduleService: ScheduleService, 
               private loadingCtrl: LoadingController,
               private modalCtrl: ModalController,
+              private router: Router,
               ) { }
 
   async ngOnInit() {
-    const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
-    loading.present();
-    const header = new HttpHeaders({
-      'Authorization': `Bearer  ${localStorage.getItem('token')}`,
-     });
-  
-     await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
-      (result) => {
-        this.user = result;
-        this.dates = this.scheduleService.getScheduleUser(this.user.id).pipe(
-          tap(schedules=>{
-            loading.dismiss();
-            return schedules;
-        }));
-      });
   }
 
-  
-  async doRefresh(event) {
-    const loading = await this.loadingCtrl.create({message: 'Loading....'});
-    loading.present();
-    this.dates = this.scheduleService.getScheduleUser(this.user.id).pipe(
-      tap(schedules=>{
-        loading.dismiss();
-        return schedules;
-    }));
 
-    setTimeout(() => {
-      event.target.complete();
-    }, 1000);
-  }
-
-  async openCalendarModal(schedule:Schedule){
-    const modal = await this.modalCtrl.create({
-      component: DetailCalendarComponent,
-      componentProps: {schedule},
-    });
-    await modal.present();
+    pendingScheduleLink(){
+      this.router.navigate(['/pending-schedule']);
+    }
+    acceptedScheduleLink(){
+      this.router.navigate(['/accepted-schedule']);
     }
 }

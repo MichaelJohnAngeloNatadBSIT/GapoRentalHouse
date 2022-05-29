@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ schedule.product_name }}
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <img src="{{apiUrl}}{{schedule.imageUrl}}" alt="product image"> -->
+  <div class="ion-padding">
+    
+    <ion-text>
+      <h1>{{schedule.product_name}}</h1>
+      <h4>{{schedule.product_price}}</h4>
+      <form *ngIf="form" [formGroup]='form'>
+        <ion-datetime [value]="schedule.schedule_date" readonly="true" formControlName="schedule_date"></ion-datetime>
+      </form>
+    </ion-text>
+    <ion-button expand="block" color="success" (click)="acceptSchedule()">Approve Schedule</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteSchedule()">Delete Schedule</ion-button>
+    <!-- <ion-button color="primary" expand="block" (click)="openScheduleModal()">Schedule A Visit</ion-button> -->
+
+  </div>
+</ion-content>

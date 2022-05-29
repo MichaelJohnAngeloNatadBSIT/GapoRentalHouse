@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Schedule List</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="tablinks"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+   <ion-card *ngFor="let d of dates|async"  (click)="openDetailModal(d)">
+    <ion-card-header>
+      <ion-card-subtitle>₱{{d.product_price}}</ion-card-subtitle>
+      <ion-card-title>{{d.product_name}}</ion-card-title>
+      <ion-card-subtitle>{{d.schedule_date}}</ion-card-subtitle>
+      <ion-datetime [value]="d.schedule_date" readonly="true"></ion-datetime>
+    </ion-card-header> 
+  </ion-card>
+
+
+</ion-content>

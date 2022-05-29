@@ -66,6 +66,26 @@ const routes: Routes = [
     path: 'change-password',
     loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   },
+  {
+    path: 'post-house-tab',
+    loadChildren: () => import('./post-house-tab/post-house-tab.module').then( m => m.PostHouseTabPageModule)
+  },
+  {
+    path: 'schedule-list',
+    loadChildren: () => import('./schedule-list/schedule-list.module').then( m => m.ScheduleListPageModule)
+  },
+  {
+    path: 'schedule-list-detail',
+    loadChildren: () => import('./schedule-list-detail/schedule-list-detail.module').then( m => m.ScheduleListDetailPageModule)
+  },
+  {
+    path: 'accepted-schedule',
+    loadChildren: () => import('./accepted-schedule/accepted-schedule.module').then( m => m.AcceptedSchedulePageModule)
+  },
+  {
+    path: 'pending-schedule',
+    loadChildren: () => import('./pending-schedule/pending-schedule.module').then( m => m.PendingSchedulePageModule)
+  },
 
 
 

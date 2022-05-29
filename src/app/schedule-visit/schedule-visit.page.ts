@@ -46,7 +46,7 @@ export class ScheduleVisitPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
         
-    this.scheduleService.scheduleUser(this.user.id, this.product.id, this.product.name, this.product.price, this.product.imageUrl, this.form.value).subscribe(
+    this.scheduleService.scheduleUser(this.user.id, this.product.id, this.product.name, this.product.price, this.product.imageUrl, this.product.user_id, this.form.value).subscribe(
       async (res)=>{
       loading.dismiss();
       const alert = await this.alertController.create({

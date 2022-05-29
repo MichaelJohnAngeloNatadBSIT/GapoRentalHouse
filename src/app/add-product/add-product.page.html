@@ -30,7 +30,10 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Status</ion-label>
-      <ion-input formControlName="status"required></ion-input>
+        <ion-select value="rent" formControlName="status"required>
+          <ion-select-option value="selling">Selling</ion-select-option>
+          <ion-select-option value="rent">For Rent</ion-select-option>
+        </ion-select>
     </ion-item>
     <span *ngIf="errorCtr.status.errors?.required">Status is required</span>
 
@@ -39,14 +42,14 @@
       <ion-textarea formControlName="description"></ion-textarea>
     </ion-item>
 
-    <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid">Post Product</ion-button>
+    <ion-button (click)="submitProduct()" expand="block" [disabled]="form.invalid">Post House</ion-button>
   </form>
   </div>
 
   <div *ngIf="productId">
   <form #f="ngForm" (ngSubmit)="onSubmitform(f)">
     <div class="card">
-    <input type="file"  name="myFile" (change)="fileEvent($event)"/>
+    <input type="file"  name="myFile" (change)="fileEvent($event)">
       <div class="header">
             <img [src]="imagePreview"/>
       </div>
