@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit, Input } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { AcceptedScheduleService } from '../services/accepted-schedule.service';
+import { tap } from 'rxjs/operators';
+import { Schedule } from '../schedule/schedule.model';
+import { ProductService } from '../services/product.service';
+import { Observable } from 'rxjs';
+import { Product } from '../market/market.model';
 
 @Component({
   selector: 'app-accepted-schedule',
@@ -6,10 +14,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accepted-schedule.page.scss'],
 })
 export class AcceptedSchedulePage implements OnInit {
+  user: any;
+  dates: any;
+  product: any;
+  products$:  Observable<Product[]>;
+  apiUrl = 'http://192.168.1.178:80/imagesHouses/';
+  @Input() schedule:Schedule;
+  constructor(
+    private acceptedService: AcceptedScheduleService,
+    private loadingCtrl: LoadingController,
+    private http: HttpClient,
+    private productService: ProductService,
 
-  constructor() { }
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
+    loading.present();
+    const header = new HttpHeaders({
+      'Authorization': `Bearer  ${localStorage.getItem('token')}`,
+     });
+  
+     await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
+      (result) => {
+        this.user = result;
+        this.dates = this.acceptedService.getScheduleById(this.user.id).pipe(
+          tap(schedules=>{
+            loading.dismiss();
+            return schedules;
+        }))
+      });
+  }
+
+  async doRefresh(event) {
+    const loading = await this.loadingCtrl.create({message: 'Loading....'});
+    loading.present();
+    this.dates = this.acceptedService.getScheduleById(this.user.id).pipe(
+      tap(schedules=>{
+        loading.dismiss();
+        return schedules;
+    }));
+
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
   }
 
 }

@@ -11,15 +11,17 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
-   <ion-card *ngFor="let d of dates|async"  (click)="openDetailModal(d)">
+  <div *ngFor="let d of dates|async">
+   <ion-card   (click)="openDetailModal(d)">
     <ion-card-header>
+      <img src="{{apiUrl}}{{d.product_image}}" />
       <ion-card-subtitle>₱{{d.product_price}}</ion-card-subtitle>
       <ion-card-title>{{d.product_name}}</ion-card-title>
       <ion-card-subtitle>{{d.schedule_date}}</ion-card-subtitle>
-      <ion-datetime [value]="d.schedule_date" readonly="true"></ion-datetime>
+      <!-- <ion-datetime [value]="d.schedule_date" readonly="true"></ion-datetime> -->
     </ion-card-header> 
   </ion-card>
+</div>
 
 
 </ion-content>

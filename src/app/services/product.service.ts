@@ -10,12 +10,18 @@ export class ProductService {
   apiUrl = 'http://192.168.1.178:80/products';
   apiUrl2 = 'http://192.168.1.178:80/getProductById';
   apiUrl3 = 'http://192.168.1.178:80/add-product';
-  apiUrl4 = 'http://192.168.1.178:80/getProductByUserId';
+  apiUrl4 = 'http://192.168.1.178:80/getProductWithUserId';
+  apiUrl5 = 'http://192.168.1.178:80/getProductsWithoutUserId';
 
   constructor(private http:HttpClient) { }
 
-  getProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.apiUrl}`);
+  // getProducts(): Observable<Product[]>{
+  //   return this.http.get<Product[]>(`${this.apiUrl}`);
+  // }
+
+  
+  getProducts(userId: number): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.apiUrl5}/${userId}`);
   }
 
   getProductWithId(productId:number): Observable<Product[]>{

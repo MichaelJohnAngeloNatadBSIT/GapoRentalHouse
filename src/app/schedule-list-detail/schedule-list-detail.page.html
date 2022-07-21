@@ -13,19 +13,25 @@
 </ion-header>
 
 <ion-content>
-  <!-- <img src="{{apiUrl}}{{schedule.imageUrl}}" alt="product image"> -->
+
   <div class="ion-padding">
     
     <ion-text>
       <h1>{{schedule.product_name}}</h1>
       <h4>{{schedule.product_price}}</h4>
-      <form *ngIf="form" [formGroup]='form'>
-        <ion-datetime [value]="schedule.schedule_date" readonly="true" formControlName="schedule_date"></ion-datetime>
-      </form>
+      <ion-datetime [value]="schedule.schedule_date" readonly="true" ></ion-datetime>
+      <div *ngFor="let u of user">
+        <h1>User Information</h1>  
+        <img src="{{apiUrl2}}{{u.image}}" alt="{{user.image}}" class="profile-pic">
+        <h4>{{u.email}}</h4>
+        <h4>{{u.first_name}}</h4>
+        <h4>{{u.last_name}}</h4>
+      </div>
     </ion-text>
     <ion-button expand="block" color="success" (click)="acceptSchedule()">Approve Schedule</ion-button>
+    <ion-button expand="block" color="secondary" (click)="houseSold()">House Sold/Rented</ion-button>
     <ion-button expand="block" color="danger" (click)="deleteSchedule()">Delete Schedule</ion-button>
-    <!-- <ion-button color="primary" expand="block" (click)="openScheduleModal()">Schedule A Visit</ion-button> -->
+
 
   </div>
 </ion-content>

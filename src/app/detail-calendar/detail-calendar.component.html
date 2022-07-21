@@ -14,5 +14,12 @@
 <ion-content>
   <div class="ion-padding">
     <ion-datetime [value]="schedule.schedule_date" readonly="true"></ion-datetime>
+    <div *ngFor="let p of product">
+      <h1>House Information</h1>  
+      <img src="{{apiUrl}}{{p.imageUrl}}" alt="{{p.image}}" class="profile-pic">
+      <h4>{{p.name}}</h4>
+      <h4>{{p.price}}</h4>
+      <h4>{{p.address}}</h4>
+    </div>
   </div>
 </ion-content>

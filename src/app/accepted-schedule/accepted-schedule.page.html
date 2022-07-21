@@ -8,5 +8,18 @@
 </ion-header>
 
 <ion-content>
+  <div class="ion-padding" *ngFor="let d of dates|async">
+    <ion-datetime [value]="d.schedule_date" readonly="true"></ion-datetime>
+  </div>
+  <!-- <ion-card *ngFor="let p of products$|async">
+    <img src="{{apiUrl}}{{p.imageUrl}}" />
+    <ion-card-header>
+      <ion-card-subtitle>₱{{p.price}}</ion-card-subtitle>
+      <ion-card-title>Name: {{p.name}}</ion-card-title>
+      <ion-card-subtitle>Address: {{p.address}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>Status: {{p.status}}</ion-card-content>
+    <ion-card-content>Description {{p.description}}</ion-card-content>
+  </ion-card> -->
 
 </ion-content>

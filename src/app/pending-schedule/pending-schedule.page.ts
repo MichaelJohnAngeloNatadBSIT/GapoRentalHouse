@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { ScheduleService } from '../services/schedule.service';
+import { ProductService } from '../services/product.service';
 import { Observable } from 'rxjs';
 import { Product } from '../market/market.model';
 import { Schedule } from '../schedule/schedule.model';
@@ -24,6 +25,7 @@ export class PendingSchedulePage implements OnInit {
   constructor(
               private http: HttpClient, 
               private scheduleService: ScheduleService, 
+              private productService: ProductService, 
               private loadingCtrl: LoadingController,
               private modalCtrl: ModalController,
               private router: Router,
@@ -45,8 +47,10 @@ export class PendingSchedulePage implements OnInit {
             return schedules;
         }));
       });
-  }
 
+      // this.getWithProductsId();
+  }
+  
   async doRefresh(event) {
     const loading = await this.loadingCtrl.create({message: 'Loading....'});
     loading.present();
@@ -60,6 +64,18 @@ export class PendingSchedulePage implements OnInit {
       event.target.complete();
     }, 1000);
   }
+
+
+  // async getWithProductsId() {
+  //   const loading = await this.loadingCtrl.create({message: 'Loading....'});
+  //   loading.present();
+
+  //   this.products$ = this.productService.getProductWithId(this.dates.product_id).pipe(
+  //     tap(products=>{
+  //       loading.dismiss();
+  //       return products;
+  //   }));
+  // }
 
   async openCalendarModal(schedule:Schedule){
     const modal = await this.modalCtrl.create({

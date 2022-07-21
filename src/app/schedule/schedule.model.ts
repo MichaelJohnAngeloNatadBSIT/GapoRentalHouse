@@ -5,5 +5,6 @@ export interface Schedule{
     product_name: string;
     product_price: number;
     schedule_date: string;
-    imageUrl: string;
+    product_image: string;
+    post_user_id: number;
 }

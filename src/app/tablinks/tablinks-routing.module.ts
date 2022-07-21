@@ -26,14 +26,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'tablinks/profile',
+        redirectTo: 'tablinks/market',
         pathMatch: 'full'
       },
     ]
   },
   {
     path: '',
-    redirectTo: 'tablinks/profile',
+    redirectTo: 'tablinks/market',
     pathMatch: 'full'
   }
 ];
