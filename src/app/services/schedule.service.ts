@@ -13,6 +13,8 @@ export class ScheduleService {
   apiUrl4 = 'http://192.168.1.178:80/get_user';
   apiUrl5 = 'http://192.168.1.178:80/get_product';
   apiUrl6 = 'http://192.168.1.178:80/record_sale';
+  apiUrl7 = 'http://192.168.1.178:80/get_approved_schedule';
+  apiUrl8 = 'http://192.168.1.178:80/approved-schedule-post-user-id';
  
   
 
@@ -30,6 +32,10 @@ export class ScheduleService {
     return this.http.get<Schedule[]>(`${this.apiUrl2}/${postUserId}`);
   }
 
+  getApprovedScheduleWithPostUserId(postUserId: number): Observable<Schedule[]>{
+    return this.http.get<Schedule[]>(`${this.apiUrl8}/${postUserId}`);
+  }
+
   deleteSchedule(scheduleId: number){
     return this.http.delete(`${this.apiUrl3}/${scheduleId}`);
   }
@@ -45,7 +51,4 @@ export class ScheduleService {
   recordSale(scheduleId: number, userId: number, productId: number, productName:string, productPrice:number, productImg:string, postUserId:number, schedule): Observable<any>{
     return this.http.post(`${this.apiUrl6}/${scheduleId}/${userId}/${productId}/${productName}/${productPrice}/${productImg}/${postUserId}`, schedule);
   }
-
-  
-
 }

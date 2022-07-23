@@ -9,13 +9,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductService } from '../services/product.service';
 import { AcceptedScheduleService } from '../services/accepted-schedule.service';
 import { ScheduleListDetailPage } from '../schedule-list-detail/schedule-list-detail.page';
+import { ApprovedScheduleDetailPage } from '../approved-schedule-detail/approved-schedule-detail.page';
 
 @Component({
-  selector: 'app-schedule-list',
-  templateUrl: './schedule-list.page.html',
-  styleUrls: ['./schedule-list.page.scss'],
+  selector: 'app-approved-schedule',
+  templateUrl: './approved-schedule.page.html',
+  styleUrls: ['./approved-schedule.page.scss'],
 })
-export class ScheduleListPage implements OnInit {
+export class ApprovedSchedulePage implements OnInit {
   user: any;
   userInfo: any;
   products$: Observable<Product[]>;
@@ -33,8 +34,7 @@ export class ScheduleListPage implements OnInit {
     private modalCtrl: ModalController,
   ) { }
 
- async ngOnInit() { 
-  const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
+  async ngOnInit() {const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
   loading.present();
   const header = new HttpHeaders({
     'Authorization': `Bearer  ${localStorage.getItem('token')}`,
@@ -43,7 +43,7 @@ export class ScheduleListPage implements OnInit {
    await this.http.get('http://192.168.1.178:80/user', {headers: header}).subscribe(
     (result) => {
       this.user = result;
-      this.dates = this.scheduleService.getScheduleWithPostUserId(this.user.id).pipe(
+      this.dates = this.scheduleService.getApprovedScheduleWithPostUserId(this.user.id).pipe(
         tap(schedules=>{
           console.log(schedules);
           loading.dismiss();
@@ -51,13 +51,12 @@ export class ScheduleListPage implements OnInit {
       }));
 
     });
-    
   }
 
   async doRefresh(event) {
     const loading = await this.loadingCtrl.create({message: 'Loading....'});
     loading.present();
-    this.dates= this.scheduleService.getScheduleWithPostUserId(this.user.id).pipe(
+    this.dates= this.scheduleService.getApprovedScheduleWithPostUserId(this.user.id).pipe(
       tap(schedules=>{
         loading.dismiss();
         return schedules;
@@ -70,7 +69,7 @@ export class ScheduleListPage implements OnInit {
 
   async openDetailModal(schedule:Schedule){
     const modal = await this.modalCtrl.create({
-      component: ScheduleListDetailPage,
+      component: ApprovedScheduleDetailPage,
       componentProps: {schedule},
     });
     await modal.present();

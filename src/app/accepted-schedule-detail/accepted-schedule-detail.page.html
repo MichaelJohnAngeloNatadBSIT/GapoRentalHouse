@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Approved Schedule
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let p of product">
+  <ion-card>
+    <ion-card-header>
+      <img src="{{apiUrl}}{{p.imageUrl}}" alt="{{p.image}}" class="profile-pic">
+      <ion-card-subtitle>House Information</ion-card-subtitle>
+      <ion-card-title>{{p.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h4>{{p.price}}</h4>
+      <h4>{{p.address}}</h4>
+    </ion-card-content>
+    </ion-card>
+  </div>  
+
+</ion-content>

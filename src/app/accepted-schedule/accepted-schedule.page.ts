@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { AcceptedScheduleService } from '../services/accepted-schedule.service';
 import { tap } from 'rxjs/operators';
 import { Schedule } from '../schedule/schedule.model';
 import { ProductService } from '../services/product.service';
 import { Observable } from 'rxjs';
 import { Product } from '../market/market.model';
+import { AcceptedScheduleDetailPage } from '../accepted-schedule-detail/accepted-schedule-detail.page';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   selector: 'app-accepted-schedule',
@@ -23,8 +25,10 @@ export class AcceptedSchedulePage implements OnInit {
   constructor(
     private acceptedService: AcceptedScheduleService,
     private loadingCtrl: LoadingController,
+    private modalCtrl: ModalController,
     private http: HttpClient,
     private productService: ProductService,
+    private scheduleService: ScheduleService,
 
   ) { }
 
@@ -44,6 +48,7 @@ export class AcceptedSchedulePage implements OnInit {
             return schedules;
         }))
       });
+  
   }
 
   async doRefresh(event) {
@@ -58,6 +63,14 @@ export class AcceptedSchedulePage implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 1000);
+  }
+
+  async openDetailModal(schedule:Schedule){
+    const modal = await this.modalCtrl.create({
+      component: AcceptedScheduleDetailPage,
+      componentProps: {schedule},
+    });
+    await modal.present();
   }
 
 }

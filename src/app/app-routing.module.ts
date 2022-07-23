@@ -86,6 +86,18 @@ const routes: Routes = [
     path: 'pending-schedule',
     loadChildren: () => import('./pending-schedule/pending-schedule.module').then( m => m.PendingSchedulePageModule)
   },
+  {
+    path: 'approved-schedule',
+    loadChildren: () => import('./approved-schedule/approved-schedule.module').then( m => m.ApprovedSchedulePageModule)
+  },
+  {
+    path: 'approved-schedule-detail',
+    loadChildren: () => import('./approved-schedule-detail/approved-schedule-detail.module').then( m => m.ApprovedScheduleDetailPageModule)
+  },
+  {
+    path: 'accepted-schedule-detail',
+    loadChildren: () => import('./accepted-schedule-detail/accepted-schedule-detail.module').then( m => m.AcceptedScheduleDetailPageModule)
+  },
 
 
 

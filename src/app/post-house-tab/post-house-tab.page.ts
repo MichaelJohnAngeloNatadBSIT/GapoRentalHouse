@@ -25,4 +25,8 @@ export class PostHouseTabPage implements OnInit {
     this.router.navigate(['/schedule-list']);
   }
 
+  approvedScheduleListLink(){
+    this.router.navigate(['/approved-schedule']);
+  }
+
 }

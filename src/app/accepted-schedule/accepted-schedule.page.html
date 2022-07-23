@@ -9,7 +9,9 @@
 
 <ion-content>
   <div class="ion-padding" *ngFor="let d of dates|async">
-    <ion-datetime [value]="d.schedule_date" readonly="true"></ion-datetime>
+    <ion-card (click)="openDetailModal(d)">
+      <ion-datetime [value]="d.schedule_date" readonly="true" ></ion-datetime>
+    </ion-card>
   </div>
   <!-- <ion-card *ngFor="let p of products$|async">
     <img src="{{apiUrl}}{{p.imageUrl}}" />

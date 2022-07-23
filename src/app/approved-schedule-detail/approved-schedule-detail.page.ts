@@ -10,32 +10,30 @@ import { tap } from 'rxjs/operators';
 import { Product } from '../market/market.model';
 
 @Component({
-  selector: 'app-schedule-list-detail',
-  templateUrl: './schedule-list-detail.page.html',
-  styleUrls: ['./schedule-list-detail.page.scss'],
+  selector: 'app-approved-schedule-detail',
+  templateUrl: './approved-schedule-detail.page.html',
+  styleUrls: ['./approved-schedule-detail.page.scss'],
 })
-export class ScheduleListDetailPage implements OnInit {
+export class ApprovedScheduleDetailPage implements OnInit {
   @Input() schedule: Schedule;
   @Input() product: Product;
   apiUrl = 'http://192.168.1.178:80/imagesHouses/';
   form: FormGroup;
   user: any;
   apiUrl2 = 'http://192.168.1.178:80/images/';
-  
+
   constructor(
-    private modalCtrl: ModalController,
+     private modalCtrl: ModalController,
     private acceptService: AcceptedScheduleService,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private scheduleService: ScheduleService,
     private loadingCtrl: LoadingController,
     private http: HttpClient,
-
   ) { }
 
   async ngOnInit() {
-
-    // this.form = new FormGroup({
+   // this.form = new FormGroup({
     //   schedule_date: new FormControl(null, Validators.required),
     // });
   const loading = await this.loadingCtrl.create({message: 'Loading....'}); 
@@ -47,7 +45,6 @@ export class ScheduleListDetailPage implements OnInit {
       loading.dismiss();
     })
   }
-  
 
   closeModal(){
     this.modalCtrl.dismiss();
@@ -108,5 +105,6 @@ export class ScheduleListDetailPage implements OnInit {
       this.modalCtrl.dismiss();
     });
   }
+
 
 }

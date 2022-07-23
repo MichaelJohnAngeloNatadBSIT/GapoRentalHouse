@@ -12,15 +12,14 @@ export class AcceptedScheduleService {
 
   constructor(private http: HttpClient) { }
 
-  acceptSchedule (userId: number, productId: number, scheduleId: number, scheduleDate: string){
-    return this.http.post(`${this.apiUrl}/${userId}/${productId}/${scheduleId}/${scheduleDate}`,scheduleDate);
+  acceptSchedule (userId: number, productId: number, scheduleId: number, postUserId:number, scheduleDate: string){
+    return this.http.post(`${this.apiUrl}/${userId}/${productId}/${scheduleId}/${postUserId}/${scheduleDate}`,scheduleDate);
   }
   deleteSchedule(scheduleId: number):Observable<Schedule>{
     return this.http.delete<Schedule>(`${this.apiUrl}/${scheduleId}`);
   }
 
   getScheduleById(userId:number){
-    return this.http.get(`${this.apiUrl2}/${userId}`);
-    
+    return this.http.get(`${this.apiUrl2}/${userId}`); 
   }
 }
